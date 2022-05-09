@@ -1,0 +1,29 @@
+/* Global Styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+}
+.alert {
+  margin: 10px 0 5px 0;
+}
+#footer {
+  /* Зазначаємо верхню межу елемента: ширина лінії, тип лінії, колір лінії */
+  border-top: 1px solid #dee2e6;
+  /* зазначаємо верхню межу елемента: ширина лінії, тип лінії, колір лінії */
+  padding-top: 10px;
+}
+/* Group Selector */
+#group-selector {
+  margin-top: 10px;
+}
+#group-selector label {
+  line-height: calc(1.5em + 0.75rem + 2px);
+}
+/* Tabte Styeles */
+.table td {
+  vertical-align: middle;
+}
