@@ -46,13 +46,13 @@
         <div class="col-sm-12">
           <ul class="nav nav-tabs">
             <li class="nav-item">
-              <a class="nav-link active" href="{% url 'home' %}">Студенти</a>
+              <a class="nav-link active" href="{% url 'home'}">Студенти</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/journal">Відвідування</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'groups' %}>Групи</a>
+              <a class="nav-link" href="{% url 'groups' %}">Групи</a>
             </li>
           </ul>
         </div>
@@ -67,7 +67,10 @@
           <h2 class="my-3">База Студентів</h2>
 
           <!-- Add student button -->
-          <a class="btn btn-primary md-3" href={% url "students_add" %} role="button"
+          <a
+            class="btn btn-primary md-3"
+            href='{% url "students_add" %}'
+            role="button"
             >Додати Студента</a
           >
           <!-- Start Students Listing -->
@@ -95,23 +98,31 @@
                     />
                   </td>
                   <td>
-                    <a title="Редагувати" href="{% url 'students_edit' 1 %}">Літвінов</a>
+                    <a title="Редагувати" href="{% url 'students_edit' 1 %}"
+                      >Літвінов</a
+                    >
                   </td>
                   <td>
-                    <a title="Редагувати" href="{% url 'students_edit' 1 %}">Владислав</a>
+                    <a title="Редагувати" href="{% url 'students_edit' 1 %}"
+                      >Владислав</a
+                    >
                   </td>
                   <td>2123</td>
                   <td>
                     <div class="dropdown">
                       <button type="button" class="btn btn-primary">Дія</button>
                       <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{% url 'students_edit' 1 %}"
+                        <a
+                          class="dropdown-item"
+                          href="{% url 'students_edit' 1 %}"
                           >Редагувати</a
                         >
                         <a class="dropdown-item" href="/journal/1"
                           >Відвідування</a
                         >
-                        <a class="dropdown-item" href="{% url 'students_delete' 1 %}"
+                        <a
+                          class="dropdown-item"
+                          href="{% url 'students_delete' 1 %}"
                           >Видалити</a
                         >
                       </div>
@@ -129,23 +140,31 @@
                     />
                   </td>
                   <td>
-                    <a title="Редагувати" href="{% url 'students_edit' 2 %}">Подоба</a>
+                    <a title="Редагувати" href="{% url 'students_edit' 2 %}"
+                      >Подоба</a
+                    >
                   </td>
                   <td>
-                    <a title="Редагувати" href="{% url 'students_edit' 2 %}">Андрій</a>
+                    <a title="Редагувати" href="{% url 'students_edit' 2 %}"
+                      >Андрій</a
+                    >
                   </td>
                   <td>120</td>
                   <td>
                     <div class="dropdown">
                       <button type="button" class="btn btn-primary">Дія</button>
                       <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{% url 'students_edit' 2 %}"
+                        <a
+                          class="dropdown-item"
+                          href="{% url 'students_edit' 2 %}"
                           >Редагувати</a
                         >
                         <a class="dropdown-item" href="/journal/2"
                           >Відвідування</a
                         >
-                        <a class="dropdown-item" href="{% url 'students_delete' 2 %}"
+                        <a
+                          class="dropdown-item"
+                          href="{% url 'students_delete' 2 %}"
                           >Видалити</a
                         >
                       </div>
@@ -163,23 +182,31 @@
                     />
                   </td>
                   <td>
-                    <a title="Редагувати" href="{% url 'students_edit' 3 %}">Дорощук</a>
+                    <a title="Редагувати" href="{% url 'students_edit' 3 %}"
+                      >Дорощук</a
+                    >
                   </td>
                   <td>
-                    <a title="Редагувати" href="{% url 'students_edit' 3 %}">Ігор</a>
+                    <a title="Редагувати" href="{% url 'students_edit' 3 %}"
+                      >Ігор</a
+                    >
                   </td>
                   <td>418</td>
                   <td>
                     <div class="dropdown">
                       <button type="button" class="btn btn-primary">Дія</button>
                       <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{% url 'students_edit' 3 %}"
+                        <a
+                          class="dropdown-item"
+                          href="{% url 'students_edit' 3 %}"
                           >Редагувати</a
                         >
                         <a class="dropdown-item" href="/journal/3"
                           >Відвідування</a
                         >
-                        <a class="dropdown-item" href="{% url 'students_delete' 3 %}"
+                        <a
+                          class="dropdown-item"
+                          href="{% url 'students_delete' 3 %}"
                           >Видалити</a
                         >
                       </div>
