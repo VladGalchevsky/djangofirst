@@ -5,12 +5,12 @@ from django.http import HttpResponse
 def students_list(request):
     students = (
        {'id': 1,
-        'first_name': 'Владислав',
+        'first_name': 'Дмитро',
         'last_name': 'Літвінов',
         'ticket': 212,
         'image': 'img/vlad.jpg'},
        {'id': 2,
-        'first_name': 'Андрій',
+        'first_name': 'Віталій',
         'last_name': 'Подоба',  
         'ticket': 213,
         'image': 'img/andrew.jpeg'},
@@ -34,7 +34,18 @@ def students_delete(request, sid):
 
 # Views for Groups
 def groups_list(request):
-    return HttpResponse('<h1>Groups Listing</h1>')
+    groups = (
+        {'id': 1,
+         'name': 'Мтм-21',
+         'leader': {'id': 1, 'name': 'Літвінов Дмитро'}},
+        {'id': 2,
+         'name': 'Мтм-22',
+         'leader': {'id': 2, 'name': 'Віталій Подоба'}},
+        {'id': 3,
+         'name': 'Мтм-23',
+         'leader': {'id': 3, 'name': 'Ігор Дорощук'}},
+    )
+    return render(request, 'students/groups_list.html', {'groups': groups})
 
 def groups_add(request):
     return HttpResponse('<h1>Group Add Form</h1>')
