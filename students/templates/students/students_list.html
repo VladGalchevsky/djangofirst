@@ -49,25 +49,13 @@
           <td>{{ student.ticket }}</td>
           <td>
             <div class="dropdown">
-              <button
-                type="button"
-                class="btn btn-primary dropdown-toggle"
-                data-toggle="dropdown"
-              >
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                 Дія
               </button>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="{% url 'students_edit' student.id %}"
-                  >Редагувати</a
-                >
-                <a class="dropdown-item" href="/journal/{{student.id }}"
-                  >Відвідування</a
-                >
-                <a
-                  class="dropdown-item"
-                  href="{% url 'students_delete' student.id %}"
-                  >Видалити</a
-                >
+                <a class="dropdown-item" href="{% url 'students_edit' student.id %}">Редагувати</a>
+                <a class="dropdown-item" href="{% url 'journal_jid' student.id %}">Відвідування</a>
+                <a class="dropdown-item" href="{% url 'students_delete' student.id %}">Видалити</a>
               </div>
             </div>
           </td>
