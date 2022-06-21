@@ -12,7 +12,8 @@
   <a class="btn btn-primary mb-3" href='{% url "groups_add" %}' role="button"
     >Додати групу</a
   >
-  <!-- Start Students Listing -->
+  <!-- Start groups Listing -->
+  {% if groups %}
   <table class="table table-hover table-striped">
     {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
       <thead>
@@ -36,13 +37,9 @@
         <tr>
           <td>{{ forloop.counter }}</td>
           <td>
-            <a href="{% url 'groups_edit' group.id %}">{{ group.name }}</a>
+            <a href="{% url 'groups_edit' group.id %}">{{ group.title }}</a>
           </td>
-          <td>
-            <a href="{% url 'students_edit' group.leader.id %}"
-              >{{ group.leader.name }}</a
-            >
-          </td>
+          <td>{% if group.leader %}<a href="{% url 'students_edit' group.leader.id %}">{{ group.leader }}</a>{% else %}Немає{% endif %}</td>
           <td>
             <div class="dropdown">
               <button
@@ -66,6 +63,9 @@
       {% endfor %}
     </tbody>
   </table>
+  {% else %}
+    <p>Поки немає груп у базі.</p>
+  {% endif %}
 
   <!-- End groups listing -->
   {% if groups.has_other_pages %}

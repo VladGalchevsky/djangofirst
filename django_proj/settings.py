@@ -77,16 +77,10 @@ WSGI_APPLICATION = 'django_proj.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'studentsdb',
-        'USER': 'studentsdb',
-        'PASSWORD': '12345qwert',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
+# We moved DATABASES variable to db.py module which added to .gitignore
+# so we don't keep postgresql passwords in repository
+from .db import DATABASES
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
