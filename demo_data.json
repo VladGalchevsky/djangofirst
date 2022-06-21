@@ -1,0 +1,412 @@
+[
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$150000$u5eVgHD9YdLZ$7P4jRso2WOyFCH6lKurvqOpWiE2t+GUZrZLvfkAy8oY=",
+        "last_login": "2022-06-17T07:58:21.052Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "vladgalchevsky97@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2022-06-16T08:47:28.167Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "ltbgse4waylhalgxz62occclxjvmw38y",
+    "fields": {
+        "session_data": "NzI5NDk2ZmZiMDhkOWU3MDA2MDI3MTcwY2IwMmUzY2E2ZTkzZTE1ODp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIyMDI4ZmMyNzA1Mjg5YmIyZDhmMTA0MjE4YTliYzI1NjFmNDhiNmNlIn0=",
+        "expire_date": "2022-07-01T07:58:21.111Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "wt53emfia0wuj6vkh8yvd85u9sa8xtxp",
+    "fields": {
+        "session_data": "NzI5NDk2ZmZiMDhkOWU3MDA2MDI3MTcwY2IwMmUzY2E2ZTkzZTE1ODp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIyMDI4ZmMyNzA1Mjg5YmIyZDhmMTA0MjE4YTliYzI1NjFmNDhiNmNlIn0=",
+        "expire_date": "2022-06-30T10:01:53.178Z"
+    }
+},
+{
+    "model": "students.student",
+    "pk": 1,
+    "fields": {
+        "first_name": "Oleg",
+        "last_name": "Podoba",
+        "middle_name": "",
+        "birthday": "2022-06-15",
+        "photo": "",
+        "ticket": "234",
+        "student_group": null,
+        "notes": ""
+    }
+},
+{
+    "model": "students.student",
+    "pk": 3,
+    "fields": {
+        "first_name": "Vladislav",
+        "last_name": "Galchevsky",
+        "middle_name": "",
+        "birthday": "2022-06-16",
+        "photo": "vlad_8F7QUGc.jpg",
+        "ticket": "222",
+        "student_group": null,
+        "notes": ""
+    }
+},
+{
+    "model": "students.student",
+    "pk": 4,
+    "fields": {
+        "first_name": "Roman",
+        "last_name": "Shemet",
+        "middle_name": "",
+        "birthday": "2022-06-16",
+        "photo": "andrew_PYWnIbf.jpeg",
+        "ticket": "213",
+        "student_group": null,
+        "notes": ""
+    }
+},
+{
+    "model": "students.student",
+    "pk": 5,
+    "fields": {
+        "first_name": "Anton",
+        "last_name": "Antonov",
+        "middle_name": "",
+        "birthday": "2022-06-18",
+        "photo": "",
+        "ticket": "322",
+        "student_group": null,
+        "notes": ""
+    }
+},
+{
+    "model": "students.student",
+    "pk": 6,
+    "fields": {
+        "first_name": "Bogdan",
+        "last_name": "Bogdanov",
+        "middle_name": "",
+        "birthday": "2022-06-18",
+        "photo": "",
+        "ticket": "442",
+        "student_group": null,
+        "notes": ""
+    }
+},
+{
+    "model": "students.student",
+    "pk": 7,
+    "fields": {
+        "first_name": "Roman",
+        "last_name": "Romanov",
+        "middle_name": "",
+        "birthday": "2022-06-18",
+        "photo": "",
+        "ticket": "231",
+        "student_group": 4,
+        "notes": ""
+    }
+},
+{
+    "model": "students.student",
+    "pk": 8,
+    "fields": {
+        "first_name": "Valery",
+        "last_name": "Miladze",
+        "middle_name": "",
+        "birthday": "2022-06-18",
+        "photo": "",
+        "ticket": "112",
+        "student_group": 4,
+        "notes": ""
+    }
+},
+{
+    "model": "students.group",
+    "pk": 4,
+    "fields": {
+        "title": "MTM",
+        "leader": 1,
+        "notes": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2022-06-16T10:53:40.444Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "students",
+            "student"
+        ],
+        "object_id": "3",
+        "object_repr": "Vladislav Galchevsky",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2022-06-16T10:54:38.819Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "students",
+            "student"
+        ],
+        "object_id": "4",
+        "object_repr": "Roman Shemet",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2022-06-17T07:59:17.727Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "students",
+            "student"
+        ],
+        "object_id": "4",
+        "object_repr": "Roman Shemet",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"photo\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2022-06-17T07:59:36.880Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "students",
+            "student"
+        ],
+        "object_id": "3",
+        "object_repr": "Vladislav Galchevsky",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"photo\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2022-06-18T13:19:11.577Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "students",
+            "student"
+        ],
+        "object_id": "5",
+        "object_repr": "Anton Antonov",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2022-06-18T13:19:47.881Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "students",
+            "student"
+        ],
+        "object_id": "6",
+        "object_repr": "Bogdan Bogdanov",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2022-06-18T13:20:26.381Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "students",
+            "student"
+        ],
+        "object_id": "7",
+        "object_repr": "Roman Romanov",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2022-06-18T13:21:42.430Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "students",
+            "student"
+        ],
+        "object_id": "8",
+        "object_repr": "Valery Miladze",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2022-06-19T13:26:26.726Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "students",
+            "group"
+        ],
+        "object_id": "1",
+        "object_repr": "MTM",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2022-06-19T13:27:06.996Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "students",
+            "group"
+        ],
+        "object_id": "2",
+        "object_repr": "fgfgf (Vladislav Galchevsky)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2022-06-19T13:27:31.914Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "students",
+            "group"
+        ],
+        "object_id": "2",
+        "object_repr": "fgfgf (Vladislav Galchevsky)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2022-06-19T14:20:51.476Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "students",
+            "group"
+        ],
+        "object_id": "3",
+        "object_repr": "vtv (Oleg Podoba)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2022-06-20T10:19:29.949Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "students",
+            "group"
+        ],
+        "object_id": "3",
+        "object_repr": "vtv (Oleg Podoba)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2022-06-20T10:44:22.785Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "students",
+            "student"
+        ],
+        "object_id": "8",
+        "object_repr": "Valery Miladze",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"student_group\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2022-06-20T10:57:17.430Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "students",
+            "student"
+        ],
+        "object_id": "7",
+        "object_repr": "Roman Romanov",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"student_group\"]}}]"
+    }
+}
+]
