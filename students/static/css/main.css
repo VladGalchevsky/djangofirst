@@ -37,3 +37,11 @@ h6 {
 .row h6 {
   text-align: center;
 }
+/* Form Styles */
+textarea,
+select,
+input,
+.custom-file,
+.input-group {
+  max-width: 300px;
+}
