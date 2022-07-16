@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from ..models import Student, Group
 from django.urls import reverse
@@ -38,102 +38,77 @@ def students_list(request):
     return render(request, 'students/students_list.html', 
     {'students': students})
 
-class StudentAddForm(ModelForm):
+
+class StudentsForm(ModelForm):
+
     class Meta:
         model = Student
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        
+
         self.helper = FormHelper(self)
 
+        # add form or edit form
+        if kwargs['instance'] is None:
+            add_form = True
+        else:
+            add_form = False
+
         # set form tag attributes
-        self.helper.form_action = reverse('students_add')
+        if add_form:
+            self.helper.form_action = reverse('students_add')
+        else:
+            reverse_students_edit = reverse('students_edit',
+                                          kwargs={'pk': kwargs['instance'].id})
+            self.helper.form_action = reverse_students_edit
         self.helper.form_method = 'POST'
         self.helper.form_class = 'form-horizontal'
 
         # set form field properties
         self.helper.help_text_inline = True
-        self.helper.html5_required = True
         self.helper.label_class = 'col-sm-2 col-form-label'
         self.helper.field_class = 'col-sm-10'
 
         # add buttons
+        if add_form:
+            submit = Submit('add_button', 'Додати')
+        else:
+            submit = Submit('save_button', 'Зберегти')
         self.helper.layout.append(FormActions(
-        Submit('add_button', 'Зберегти'),
-        Submit('cancel_button', 'Скасувати', css_class='btn-danger'),
+            submit,
+            Submit('cancel_button', 'Скасувати', css_class='btn-danger'),
         ))
 
 
-class StudentAddView(CreateView):
+class BaseStudentsFormView:
+
+    def get_success_url(self):
+        return '%s?status_message=Зміни успішно збережено!' \
+               % reverse('home')
+
+    def post(self, request, *args, **kwargs):
+        # handle cancel button
+        if request.POST.get('cancel_button'):
+            return HttpResponseRedirect(reverse('home') +
+                                        '?status_message=Зміни скасовано.')
+        else:
+            return super().post(request, *args, **kwargs)
+
+
+class StudentsAddView(BaseStudentsFormView, CreateView):
     model = Student
-    form_class = StudentAddForm
+    form_class = StudentsForm
     template_name = 'students/students_add.html'
-    
-    def get_success_url(self):
-        return '%s?status_message=Студента успішно збережено!' \
-        % reverse('home')
-
-    def post(self, request, *args, **kwargs):
-        if request.POST.get('cancel_button'):
-            return HttpResponseRedirect(
-            '%s?status_message=Додавання студента відмінено!' %
-            reverse('home'))
-        else:
-            return super().post(request, *args, **kwargs)
 
 
-class StudentUpdateForm(ModelForm):
-
-    class Meta:
-        model = Student
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        
-        self.helper = FormHelper(self)
-
-        # set form tag attributes
-        self.helper.form_action = reverse('students_edit', 
-        kwargs={'pk': kwargs['instance'].id})
-        self.helper.form_method = 'POST'
-        self.helper.form_class = 'form-horizontal'
-        
-        # set form field properties
-        self.helper.help_text_inline = True
-        self.helper.html5_required = True
-        self.helper.label_class = 'col-sm-2 col-form-label'
-        self.helper.field_class = 'col-sm-10'
-
-        # add buttons
-        self.helper.layout.append(FormActions(
-            Submit('add_button', 'Зберегти'),
-            Submit('cancel_button', 'Скасувати', css_class='btn-danger'),))
-
-class StudentUpdateView(UpdateView):
+class StudentsUpdateView(BaseStudentsFormView, UpdateView):
     model = Student
+    form_class = StudentsForm
     template_name = 'students/students_edit.html'
-    form_class = StudentUpdateForm
-
-    def get_success_url(self):
-        return '%s?status_message=Студента успішно збережено!' \
-            % reverse('home')
-    
-    def post(self, request, *args, **kwargs):
-        if request.POST.get('cancel_button'):
-            return HttpResponseRedirect(
-            '%s?status_message=Редагування студента відмінено!' \
-                % reverse('home'))
-        else:
-            return super().post(request, *args, **kwargs)
 
 
-class StudentDeleteView(DeleteView):
-    model = Student 
+class StudentsDeleteView(BaseStudentsFormView, DeleteView):
+    model = Student
     template_name = 'students/students_confirm_delete.html'
-
-    def get_success_url(self):
-        return '%s?status_message=Студента успішно видалено!' \
-            % reverse('home')

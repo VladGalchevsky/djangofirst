@@ -1,4 +1,1 @@
-Django<3
-Pillow<10
-psycopg2-binary<3
-django-crispy-forms==1.14.0
+python-dateutil==2.8.1

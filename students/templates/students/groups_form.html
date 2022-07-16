@@ -1,8 +1,10 @@
-{% extends "students/base.html" %} 
+{% extends "students/base.html" %}
 {% load static %}
-{% load crispy_forms_tags %} 
-{% block meta_title %}Додати Студента{% endblock meta_title %} 
-{% block title %}Додати Студента{% endblock title %} 
+{% load crispy_forms_tags %}
+
+{% block meta_title %}Форма Групи{% endblock meta_title %}
+
+{% block title %}Форма Групи{% endblock title %}
 
 {% block status_message %}
   {% if form.errors %}

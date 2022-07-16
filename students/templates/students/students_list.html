@@ -85,7 +85,7 @@
               </button>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="{% url 'students_edit' student.id %}">Редагувати</a>
-                <a class="dropdown-item" href="{% url 'journal_jid' student.id %}">Відвідування</a>
+                <a class="dropdown-item" href="{% url 'journal' student.id %}">Відвідування</a>
                 <a class="dropdown-item" href="{% url 'students_delete' student.id %}">Видалити</a>
               </div>
             </div>
@@ -95,29 +95,7 @@
     </tbody>
   </table>
   <!-- End students listing -->
-  {% if students.has_other_pages %}
-    {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
-      <nav aria-label="Page navigation">
-        <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" href="{% url 'home' %}?page=1&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">
-              &laquo;
-            </a>
-          </li>
-          {% for p in students.paginator.page_range %}
-            <li class="page-item {% if students.number == p %}active{% endif %}">
-              <a class="page-link" href="{% url 'home' %}?page={{ p }}&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">
-                {{ p }}
-              </a>
-            </li>
-          {% endfor %}
-          <li class="page-item">
-            <a class="page-link" href="{% url 'home' %}?page={{ students.paginator.num_pages }}&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">
-              &raquo;
-            </a>
-          </li>
-        </ul>
-      </nav>
-    {% endwith %}
-  {% endif %}
+  {% with object_list=students %}
+    {% include "students/pagination.html" %}
+  {% endwith %}
 {% endblock content %}

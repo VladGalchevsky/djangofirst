@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.conf.urls.static import static
-from django.urls import path
+from django.urls import path, re_path
 from students.views import groups, students, journal, contact_admin
 
 
@@ -26,24 +26,24 @@ urlpatterns = [
 # Students urls
 path('', students.students_list, name='home'),
 path('students/add/', 
-students.StudentAddView.as_view(),
+students.StudentsAddView.as_view(),
 name='students_add'),
 path('students/<int:pk>/edit/',
-students.StudentUpdateView.as_view(),
+students.StudentsUpdateView.as_view(),
 name='students_edit'),
-path('students/<int:зл>/delete/',
-students.StudentDeleteView.as_view(),
+path('students/<int:pk>/delete/',
+students.StudentsDeleteView.as_view(),
 name='students_delete'),
 
 # Groups urls
 path('groups/', groups.groups_list, name='groups'),
-path('groups/add/', groups.groups_add,
+path('groups/add/', groups.GroupAddView.as_view(),
 name='groups_add'),
-path('groups/<int:gid>/edit/',
-groups.groups_edit,
+path('groups/<int:pk>/edit/',
+groups.GroupUpdateView.as_view(),
 name='groups_edit'),
-path('groups/<int:gid>/delete/',
-groups.groups_delete,
+path('groups/<int:pk>/delete/',
+groups.GroupDeleteView.as_view(),
 name='groups_delete'),
 
 # Contact Admin Form
@@ -52,9 +52,8 @@ name='contact_admin'),
 
 
 # Journal urls
-path('journal/', journal.journal_list, name="journal"),
-path('journal/<int:jid>/', journal.journal_jid, name="journal_jid"),
-path('journal/update', journal.journal_update, name="journal_update"),
+re_path('journal/(?:(?P<pk>\d+)/)?$', journal.JournalView.as_view(), 
+name="journal"),
 
 path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
