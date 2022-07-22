@@ -1,9 +1,15 @@
 from django.db import models
 
-# Create your models here.
 
 class Student(models.Model):
     """Student Model"""
+
+    student_group = models.ForeignKey(
+        'Group',
+        verbose_name="Група",
+        blank=False,
+        null=True,
+        on_delete=models.PROTECT)
 
     first_name = models.CharField(
         max_length=256,
@@ -36,13 +42,6 @@ class Student(models.Model):
         blank=False,
         verbose_name="Білет")
 
-    student_group = models.ForeignKey(
-        'Group',
-        verbose_name="Група",
-        blank=False,
-        null=True,
-        on_delete=models.PROTECT)    
-
     notes = models.TextField(
         blank=True,
         verbose_name="Додаткові нотатки")
@@ -52,6 +51,8 @@ class Student(models.Model):
         verbose_name_plural = "Студенти"
 
     def __str__(self):
-        """Return the first_name plus the last_name, with a space in between."""
+        """
+        Return the first_name plus the last_name, with a space in between.
+        """
         full_name = '%s %s' % (self.first_name, self.last_name)
         return full_name.strip()

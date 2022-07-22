@@ -1,17 +1,12 @@
-{% extends "students/base.html" %} 
+{% extends "students/base.html" %}
+{% load static %}
 
-{% load static %} 
+{% block meta_title %}Студенти{% endblock meta_title %}
 
-{% block meta_title %}Студенти{% endblock meta_title %} 
-
-{% block title %}База Студентів{% endblock title %} 
-
+{% block title %}База Студентів{% endblock title %}
 {% block content %}
+  <a href="{% url 'students_add' %}" class="btn btn-primary mb-3">Додати Студента</a>
 
-<!-- Add student button -->
-  <a class="btn btn-primary mb-3" href='{% url "students_add" %}'
-    >Додати Студента</a
-  >
   <!-- Start Students Listing -->
   <table class="table table-hover table-striped">
     {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
@@ -21,7 +16,7 @@
           <th>Фото</th>
           <th>
             <a href="{% url 'home' %}?order_by=last_name{% if order_by == 'last_name' and reverse != '1' %}&amp;reverse=1{% endif %}">
-              Прізвище 
+              Прізвище
               {% if order_by == 'last_name' and reverse != '1' %}&uarr;
               {% elif order_by == 'last_name' and reverse == '1' %}&darr;
               {% endif %}
@@ -29,7 +24,7 @@
           </th>
           <th>
             <a href="{% url 'home' %}?order_by=first_name{% if order_by == 'first_name' and reverse != '1' %}&amp;reverse=1{% endif %}">
-              Ім'я 
+              Ім'я
               {% if order_by == 'first_name' and reverse != '1' %}&uarr;
               {% elif order_by == 'first_name' and reverse == '1' %}&darr;
               {% endif %}
@@ -53,30 +48,13 @@
           <td>{{ forloop.counter }}</td>
           <td>
             {% if student.photo %}
-              <img
-                height="35"
-                width="35"
-                src="{{ student.photo.url }}"
-                class="rounded-circle"
-              />
+              <img class="rounded-circle" src="{{ student.photo.url }}" height="35" width="35" />
             {% else %}
-              <img 
-                class="rounded-circle" 
-                src="{% static 'img/default_user.png' %}" height="35" 
-                width="35" 
-              />
+              <img class="rounded-circle" src="{% static 'img/default_user.png' %}" height="35" width="35" />
             {% endif %}
           </td>
-          <td>
-            <a href="{% url 'students_edit' student.id %}"
-              >{{ student.last_name }}</a
-            >
-          </td>
-          <td>
-            <a href="{% url 'students_edit' student.id %}"
-              >{{ student.first_name }}</a
-            >
-          </td>
+          <td><a href="{% url 'students_edit' student.id %}" class="student-edit-form-link">{{ student.last_name }}</a></td>
+          <td><a href="{% url 'students_edit' student.id %}" class="student-edit-form-link">{{ student.first_name }}</a></td>
           <td>{{ student.ticket }}</td>
           <td>
             <div class="dropdown">
@@ -84,7 +62,7 @@
                 Дія
               </button>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="{% url 'students_edit' student.id %}">Редагувати</a>
+                <a class="dropdown-item student-edit-form-link" href="{% url 'students_edit' student.id %}">Редагувати</a>
                 <a class="dropdown-item" href="{% url 'journal' student.id %}">Відвідування</a>
                 <a class="dropdown-item" href="{% url 'students_delete' student.id %}">Видалити</a>
               </div>
@@ -94,7 +72,8 @@
       {% endfor %}
     </tbody>
   </table>
-  <!-- End students listing -->
+  <!-- End Students Listing -->
+
   {% with object_list=students %}
     {% include "students/pagination.html" %}
   {% endwith %}

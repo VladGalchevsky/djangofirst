@@ -3,12 +3,17 @@ from django.db import models
 
 class MonthJournal(models.Model):
     """Student Monthly Journal"""
-    student = models.ForeignKey('Student', 
-    verbose_name='Студент', blank=False, 
-    unique_for_month='date', on_delete=models.CASCADE)
 
-    date = models.DateField(verbose_name='Дата',
-    blank=False)
+    student = models.ForeignKey('Student',
+                                verbose_name='Студент',
+                                blank=False,
+                                unique_for_month='date',
+                                on_delete=models.CASCADE)
+
+    # we only need year and month, so always set day to first day of the month
+    date = models.DateField(
+        verbose_name='Дата',
+        blank=False)
 
     # list of days, each says whether student was present or not
     present_day1 = models.BooleanField(default=False)
@@ -48,10 +53,5 @@ class MonthJournal(models.Model):
         verbose_name_plural = 'Місячні Журнали'
 
     def __str__(self):
-        return '%s: %d, %d' % (self.student.last_name,
-        self.date.month, self.date.year)
-
-
-
-
-    
+        return '%s: %d, %d' % (self.student.last_name, self.date.month,
+                               self.date.year)

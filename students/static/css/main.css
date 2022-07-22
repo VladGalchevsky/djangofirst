@@ -1,42 +1,31 @@
 /* Global Styles */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: bold;
-}
 .alert {
+  /*
+    Відстань зверху 10px
+    Відстань справа 0px
+    Відстань знизу 5px
+    Відстань зліва 0px
+  */
   margin: 10px 0 5px 0;
 }
-#footer {
-  /* Зазначаємо верхню межу елемента: ширина лінії, тип лінії, колір лінії */
-  border-top: 1px solid #dee2e6;
-  /* зазначаємо верхню межу елемента: ширина лінії, тип лінії, колір лінії */
-  padding-top: 10px;
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
 }
-/* Group Selector */
+
+/* Table Styles */
+.table td {
+  vertical-align: middle;
+}
+
+/* Groups Selector */
 #group-selector {
   margin-top: 10px;
 }
 #group-selector label {
   font-weight: bold;
-  line-height: calc(1.5em + 0.75rem + 2px);
+  line-height: calc(1.5em + .75rem + 2px);
 }
-/* Table Styeles */
-.table td {
-  vertical-align: middle;
-  text-align: center;
-}
-.table th {
-  text-align: center;
-  vertical-align: middle;
-}
-/* Main Page style */
-.row h6 {
-  text-align: center;
-}
+
 /* Form Styles */
 textarea,
 select,
@@ -45,6 +34,7 @@ input,
 .input-group {
   max-width: 300px;
 }
+
 /* Journal Table Styles */
 td.day-box,
 th.day-header {
@@ -52,7 +42,26 @@ th.day-header {
   vertical-align: middle !important;
   text-align: center;
 }
+
 #ajax-progress-indicator {
   display: none;
 }
-  
+
+/* Modal Styles */
+.modal-dialog {
+  max-width: 600px;
+}
+
+.modal-dialog textarea,
+.modal-dialog select,
+.modal-dialog input,
+.modal-dialog .custom-file {
+  max-width: initial;
+}
+
+/* Footer Styles */
+#footer {
+  border-top: 1px solid #dee2e6;
+  padding-top: 10px;
+}
+   

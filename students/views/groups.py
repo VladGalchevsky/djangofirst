@@ -1,7 +1,6 @@
 from crispy_forms.bootstrap import FormActions
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.forms import ModelForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -9,31 +8,23 @@ from django.urls import reverse
 from django.views.generic import CreateView, UpdateView, DeleteView
 
 from students.models import Group
+from students.util import paginate
 
-# Views for Groups
+
 def groups_list(request):
     groups = Group.objects.all()
 
+    # try to order groups list
     order_by = request.GET.get('order_by', '')
     if order_by in ('title',):
         groups = groups.order_by(order_by)
         if request.GET.get('reverse', '') == '1':
             groups = groups.reverse()
 
-    # paginate groups
-    paginator = Paginator(groups, 3)
-    page = request.GET.get('page')
-    try:
-        groups = paginator.page(page)
-    except PageNotAnInteger:
-    # If page is not an integer, deliver first page.
-        groups = paginator.page(1)
-    except EmptyPage:
-    # If page is out of range (e.g. 9999), deliver
-    # last page of results.
-        groups = paginator.page(paginator.num_pages)
-    
-    return render(request, 'students/groups_list.html', {'groups': groups})
+    # apply pagination, 2 groups per page
+    context = paginate(groups, 2, request, {}, var_name='groups')
+
+    return render(request, 'students/groups_list.html', context)
 
 
 class GroupForm(ModelForm):
@@ -58,7 +49,7 @@ class GroupForm(ModelForm):
             self.helper.form_action = reverse('groups_add')
         else:
             reverse_groups_edit = reverse('groups_edit',
-                kwargs={'pk': kwargs['instance'].id})
+                                          kwargs={'pk': kwargs['instance'].id})
             self.helper.form_action = reverse_groups_edit
         self.helper.form_method = 'POST'
         self.helper.form_class = 'form-horizontal'
@@ -78,6 +69,7 @@ class GroupForm(ModelForm):
             Submit('cancel_button', 'Скасувати', css_class='btn-danger'),
         ))
 
+
 class BaseGroupFormView:
 
     def get_success_url(self):
@@ -88,7 +80,7 @@ class BaseGroupFormView:
         # handle cancel button
         if request.POST.get('cancel_button'):
             return HttpResponseRedirect(reverse('groups') +
-                '?status_message=Зміни скасовано.')
+                                        '?status_message=Зміни скасовано.')
         else:
             return super().post(request, *args, **kwargs)
 
