@@ -1,3 +1,7 @@
+from asyncio.log import logger
+import logging
+
+from importlib_metadata import method_cache
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from django import forms
@@ -6,6 +10,8 @@ from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+import logging
+
 
 
 class ContactForm(forms.Form):
@@ -61,6 +67,8 @@ def contact_admin(request):
                 message = 'Під час відправки листа виникла непередбачувана ' \
                           'помилка. Спробуйте скористатись даною формою ' \
                           'пізніше.'
+                logger = logging.getLogger(__name__)
+                logger.exception(message)
             else:
                 message = 'Повідомлення успішно надіслане!'
 
