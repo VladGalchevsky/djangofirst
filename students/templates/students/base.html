@@ -1,11 +1,12 @@
+{% load i18n %}
 {% load static %}
 
 <!DOCTYPE html>
 <html lang="uk">
 <head>
   <meta charset="UTF-8"/>
-  <title>Сервіс Обліку Студентів - {% block meta_title %}{% endblock meta_title %}</title>
-  <meta name="description" content="Система Обліку Студентів Навчального Закладу" />
+  <title>{% trans "Students Accounting Service" %} - {% block meta_title %}{% endblock meta_title %}</title>
+  <meta name="description" content="{% trans "App to manage students database" %}"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet"
@@ -28,12 +29,12 @@
     <!-- Start Header -->
     <div class="row mt-3" id="header">
       <div class="col-sm-8">
-        <h1>Сервіс Обліку Студентів</h1>
+        <h1>{% trans "Students Accounting Service" %}</h1>
       </div>
       <div class="col-sm-4 d-flex" id="group-selector">
-        <label for="group" class="mr-1"><strong>Група:</strong></label>
+        <label for="group" class="mr-1"><strong>{% trans "Group" %}:</strong></label>
         <select name="group" class="custom-select" id="group">
-          <option value="">Усі Студенти</option>
+          <option value="">{% trans "All Students" %}</option>
           {% for group in GROUPS %}
             <option value="{{ group.id }}"{% if group.selected %}selected="1"{% endif %}>{{ group.title }}{% if group.leader %}, {{ group.leader }}{% endif %}</option>
           {% endfor %}
@@ -47,16 +48,16 @@
       <div class="col-sm-12">
         <ul class="nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Студенти</a>
+            <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">{% trans "Students" %}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {% if '/journal' in request.path %}active{% endif %}" href="/journal">Відвідування</a>
+            <a class="nav-link {% if '/journal' in request.path %}active{% endif %}" href="/journal">{% trans "Journal" %}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {% if '/groups' in request.path %}active{% endif %}" href="{% url 'groups' %}">Групи</a>
+            <a class="nav-link {% if '/groups' in request.path %}active{% endif %}" href="{% url 'groups' %}">{% trans "Groups" %}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {% if '/contact-admin' in request.path %}active{% endif %}" href="{% url 'contact_admin' %}">Контакт</a>
+            <a class="nav-link {% if '/contact-admin' in request.path %}active{% endif %}" href="{% url 'contact_admin' %}">{% trans "Contact" %}</a>
           </li>
         </ul>
       </div>
@@ -83,7 +84,7 @@
     <!-- Start Footer -->
     <div class="row" id="footer">
       <div class="col-sm-12">
-        &copy; 2020 Сервіс Обліку Студентів
+        &copy; 2020 {% trans "Students Accounting Service" %}
       </div>
     </div>
     <!-- End Footer -->
@@ -124,6 +125,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.3/flatpickr.min.js"
           integrity="sha256-/irFIZmSo2CKXJ4rxHWfrI+yGJuI16Z005X/bENdpTY="
           crossorigin="anonymous"></script>
+  <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
   <script src="{% static 'js/js.cookie-2.2.1.min.js' %}"></script>
   <script src="{% static 'js/main.js' %}"></script>
   {% block extra_js %}{% endblock extra_js %}

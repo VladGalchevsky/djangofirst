@@ -1,3 +1,5 @@
+import logging
+
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from django import forms
@@ -6,18 +8,19 @@ from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 
 
 class ContactForm(forms.Form):
     from_email = forms.EmailField(
-        label="Ваша Емейл Адреса")
+        label=_("Your Email Address"))
 
     subject = forms.CharField(
-        label="Заголовок листа",
+        label=_("Email Subject"),
         max_length=128)
 
     message = forms.CharField(
-        label="Текст повідомлення",
+        label=_(u"Email Body"),
         widget=forms.Textarea)
 
     def __init__(self, *args, **kwargs):
@@ -39,7 +42,7 @@ class ContactForm(forms.Form):
         self.helper.field_class = 'col-sm-10'
 
         # form buttons
-        self.helper.add_input(Submit('send_button', 'Надіслати'))
+        self.helper.add_input(Submit('send_button', _('Send')))
 
 
 def contact_admin(request):
@@ -58,11 +61,12 @@ def contact_admin(request):
             try:
                 send_mail(subject, message, from_email, [settings.ADMIN_EMAIL])
             except Exception:
-                message = 'Під час відправки листа виникла непередбачувана ' \
-                          'помилка. Спробуйте скористатись даною формою ' \
-                          'пізніше.'
+                message = _("An error occurred during email transfer. Please, "
+                            "try again later.")
+                logger = logging.getLogger(__name__)
+                logger.exception(message)
             else:
-                message = 'Повідомлення успішно надіслане!'
+                message = _("Message sent successfully!")
 
             # redirect to same contact page with success message
             return HttpResponseRedirect(

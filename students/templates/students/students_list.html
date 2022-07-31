@@ -1,11 +1,12 @@
 {% extends "students/base.html" %}
+{% load i18n %}
 {% load static %}
 
-{% block meta_title %}Студенти{% endblock meta_title %}
+{% block meta_title %}{% trans "Students" %}{% endblock meta_title %}
 
-{% block title %}База Студентів{% endblock title %}
+{% block title %}{% trans "Students List" %}{% endblock title %}
 {% block content %}
-  <a href="{% url 'students_add' %}" class="btn btn-primary mb-3">Додати Студента</a>
+  <a href="{% url 'students_add' %}" class="btn btn-primary mb-3">{% trans "Add Student" %}</a>
 
   <!-- Start Students Listing -->
   <table class="table table-hover table-striped">
@@ -13,10 +14,10 @@
       <thead>
         <tr>
           <th><a href="#">№</a></th>
-          <th>Фото</th>
+          <th>{% trans "Photo" %}</th>
           <th>
             <a href="{% url 'home' %}?order_by=last_name{% if order_by == 'last_name' and reverse != '1' %}&amp;reverse=1{% endif %}">
-              Прізвище
+              {% trans "Last Name" %}
               {% if order_by == 'last_name' and reverse != '1' %}&uarr;
               {% elif order_by == 'last_name' and reverse == '1' %}&darr;
               {% endif %}
@@ -24,7 +25,7 @@
           </th>
           <th>
             <a href="{% url 'home' %}?order_by=first_name{% if order_by == 'first_name' and reverse != '1' %}&amp;reverse=1{% endif %}">
-              Ім'я
+              {% trans "First Name" %}
               {% if order_by == 'first_name' and reverse != '1' %}&uarr;
               {% elif order_by == 'first_name' and reverse == '1' %}&darr;
               {% endif %}
@@ -32,13 +33,13 @@
           </th>
           <th>
             <a href="{% url 'home' %}?order_by=ticket{% if order_by == 'ticket' and reverse != '1' %}&amp;reverse=1{% endif %}">
-              № Білету
+              {% trans "Ticket #" %}
               {% if order_by == 'ticket' and reverse != '1' %}&uarr;
               {% elif order_by == 'ticket' and reverse == '1' %}&darr;
               {% endif %}
             </a>
           </th>
-          <th>Дії</th>
+          <th>{% trans "Actions" %}</th>
         </tr>
       </thead>
     {% endwith %}
@@ -59,12 +60,12 @@
           <td>
             <div class="dropdown">
               <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                Дія
+                {% trans "Action" %}
               </button>
               <div class="dropdown-menu">
-                <a class="dropdown-item student-edit-form-link" href="{% url 'students_edit' student.id %}">Редагувати</a>
-                <a class="dropdown-item" href="{% url 'journal' student.id %}">Відвідування</a>
-                <a class="dropdown-item" href="{% url 'students_delete' student.id %}">Видалити</a>
+                <a class="dropdown-item student-edit-form-link" href="{% url 'students_edit' student.id %}">{% trans "Edit" %}</a>
+                <a class="dropdown-item" href="{% url 'journal' student.id %}">{% trans "Journal" %}</a>
+                <a class="dropdown-item" href="{% url 'students_delete' student.id %}">{% trans "Delete" %}</a>
               </div>
             </div>
           </td>

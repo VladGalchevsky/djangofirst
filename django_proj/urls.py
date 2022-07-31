@@ -17,6 +17,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, re_path
+from django.views.i18n import JavaScriptCatalog
+
 
 from students.views import groups, students, journal, contact_admin
 
@@ -51,5 +53,9 @@ urlpatterns = [
     path('contact-admin/', contact_admin.contact_admin,
          name='contact_admin'),
 
+    path('jsi18n/', JavaScriptCatalog.as_view(packages=['my.package']),
+         name='javascript-catalog'),
+
     path('admin/', admin.site.urls),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,14 +1,15 @@
 {% extends "students/base.html" %}
+{% load i18n %}
 {% load static %}
 
-{% block meta_title %}Додати Студента{% endblock meta_title %}
+{% block meta_title %}{% trans "Add Student" %}{% endblock meta_title %}
 
-{% block title %}Додати Студента{% endblock title %}
+{% block title %}{% trans "Add Student" %}{% endblock title %}
 
 {% block status_message %}
   {% if errors %}
     <div class="alert alert-warning" role="alert">
-      Будь ласка, виправте наступні помилки
+      {% trans "Please, correct the following errors." %}
     </div>
   {% endif %}
 {% endblock status_message %}
@@ -19,7 +20,7 @@
     {% csrf_token %}
 
     <div class="form-group row {% if errors.first_name %}has-error{% endif %}">
-      <label for="first_name" class="col-sm-2 col-form-label">Ім'я*</label>
+      <label for="first_name" class="col-sm-2 col-form-label">{% trans "First Name" %}*</label>
       <div class="col-sm-10">
         <input type="text" value="{{ request.POST.first_name }}"
                name="first_name" id="first_name"
@@ -28,17 +29,17 @@
       </div>
     </div>
     <div class="form-group row {% if errors.last_name %}has-error{% endif %}">
-      <label for="last_name" class="col-sm-2 col-form-label">Прізвище*</label>
+      <label for="last_name" class="col-sm-2 col-form-label">{% trans "Last Name" %}*</label>
       <div class="col-sm-10">
         <input type="text" value="{{ request.POST.first_name }}"
                name="last_name" id="last_name"
-               placeholder="Введіть ваше прізвище"
+               placeholder="{% trans "Enter your last name" %}"
                class="form-control {% if errors.last_name %}is-invalid{% endif %}" />
         <div class="invalid-feedback">{{ errors.last_name }}</div>
       </div>
     </div>
     <div class="form-group row {% if errors.middle_name %}has-error{% endif %}">
-      <label for="middle_name" class="col-sm-2 col-form-label">По-батькові</label>
+      <label for="middle_name" class="col-sm-2 col-form-label">{% trans "Middle Name" %}</label>
       <div class="col-sm-10">
         <input type="text" value="{{ request.POST.first_name }}"
                name="middle_name" id="middle_name"
@@ -47,17 +48,17 @@
       </div>
     </div>
     <div class="form-group row {% if errors.birthday %}has-error{% endif %}">
-      <label for="birthday" class="col-sm-2 col-form-label">Дата Народження*</label>
+      <label for="birthday" class="col-sm-2 col-form-label">{% trans "Birthday" %}*</label>
       <div class="col-sm-10">
         <input type="text" value="{{ request.POST.birthday }}"
                name="birthday" id="birthday"
-               placeholder="Напр. 1984-12-30"
+               placeholder="{% trans "For example, 1984-12-30" %}"
                class="form-control {% if errors.birthday %}is-invalid{% endif %}" />
         <div class="invalid-feedback">{{ errors.birthday }}</div>
       </div>
     </div>
     <div class="form-group row {% if errors.photo %}has-error{% endif %}">
-      <label for="photo" class="col-sm-2 col-form-label">Фото</label>
+      <label for="photo" class="col-sm-2 col-form-label">{% trans "Photo" %}</label>
       <div class="col-sm-10">
         <input type="file" value="" name="photo" id="photo"
                class="form-control-file {% if errors.photo %}is-invalid{% endif %}" />
@@ -65,7 +66,7 @@
       </div>
     </div>
     <div class="form-group row {% if errors.ticket %}has-error{% endif %}">
-      <label for="ticket" class="col-sm-2 col-form-label">Білет*</label>
+      <label for="ticket" class="col-sm-2 col-form-label">{% trans "Ticket" %}*</label>
       <div class="col-sm-10">
         <input type="text" value="{{ request.POST.ticket }}"
                name="ticket" id="ticket"
@@ -74,11 +75,11 @@
       </div>
     </div>
     <div class="form-group row {% if errors.student_group %}has-error{% endif %}">
-      <label for="student_group" class="col-sm-2 col-form-label">Група*</label>
+      <label for="student_group" class="col-sm-2 col-form-label">{% trans "Group" %}*</label>
       <div class="col-sm-10">
         <select name="student_group" id="student_group"
                 class="custom-select {% if errors.student_group %}is-invalid{% endif %}">
-          <option value="">Виберіть групу</option>
+          <option value="">{% trans "Select group" %}</option>
           {% for group in groups %}
             <option value="{{ group.id }}" {% if group.id == request.POST.student_group|add:0 %}selected="selected"{% endif %}>{{ group.title }}</option>
           {% endfor %}
@@ -87,7 +88,7 @@
       </div>
     </div>
     <div class="form-group row {% if errors.notes %}has-error{% endif %}">
-      <label for="notes" class="col-sm-2 col-form-label">Додаткові Нотатки</label>
+      <label for="notes" class="col-sm-2 col-form-label">{% trans "Extra Notes" %}</label>
       <div class="col-sm-10">
         <textarea name="notes" id="notes" class="form-control {% if errors.notes %}is-invalid{% endif %}">{{ request.POST.notes }}</textarea>
         <div class="invalid-feedback">{{ errors.notes }}</div>
@@ -96,10 +97,10 @@
     <div class="form-group row">
       <label class="col-sm-2 col-form-label"></label>
       <div class="col-sm-10">
-        <input type="submit" value="Додати" name="add_button"
+        <input type="submit" value="{% trans "Add" %}" name="add_button"
                class="btn btn-primary" />
         <button type="submit" name="cancel_button"
-                class="btn btn-link">Скасувати</button>
+                class="btn btn-link">{% trans "Cancel" %}</button>
       </div>
     </div>
   </form>
