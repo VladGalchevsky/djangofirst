@@ -2,8 +2,9 @@ from django.contrib import admin
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 from django.urls import reverse
+from django.utils.translation import gettext as _
 
-from .models import Student, Group, MonthJournal
+from .models import Group, MonthJournal, Student
 
 
 class StudentFormAdmin(ModelForm):
@@ -15,8 +16,9 @@ class StudentFormAdmin(ModelForm):
         # get group where current student is a leader
         group = Group.objects.filter(leader=self.instance).first()
         if group and self.cleaned_data['student_group'] != group:
-            raise ValidationError('Студент є старостою іншої групи.',
-                                  code='invalid')
+            raise ValidationError(
+                _("Student is a leader of a different group."),
+                code='invalid')
 
         return self.cleaned_data['student_group']
 
@@ -39,5 +41,3 @@ class StudentAdmin(admin.ModelAdmin):
 admin.site.register(Student, StudentAdmin)
 admin.site.register(Group)
 admin.site.register(MonthJournal)
-
-

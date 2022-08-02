@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic import CreateView, UpdateView, DeleteView
+from django.utils.translation import gettext as _
 
 from students.models import Group
 from students.util import paginate
@@ -61,26 +62,29 @@ class GroupForm(ModelForm):
 
         # add buttons
         if add_form:
-            submit = Submit('add_button', 'Додати')
+            submit = Submit('add_button', _('Add'))
         else:
-            submit = Submit('save_button', 'Зберегти')
+            submit = Submit('save_button', _('Save'))
         self.helper.layout.append(FormActions(
             submit,
-            Submit('cancel_button', 'Скасувати', css_class='btn-danger'),
+            Submit('cancel_button', _('Cancel'), css_class='btn-danger'),
         ))
 
 
 class BaseGroupFormView:
 
     def get_success_url(self):
-        return '%s?status_message=Зміни успішно збережено!' \
-               % reverse('groups')
+        return '%s?status_message=%s' % (reverse('groups'),
+                                         _("Changes saved successfully!"))
 
     def post(self, request, *args, **kwargs):
         # handle cancel button
         if request.POST.get('cancel_button'):
-            return HttpResponseRedirect(reverse('groups') +
-                                        '?status_message=Зміни скасовано.')
+            return (
+                HttpResponseRedirect(
+                    reverse('groups') +
+                    '?status_message=%s' % _("Changes canceled."))
+            )
         else:
             return super().post(request, *args, **kwargs)
 

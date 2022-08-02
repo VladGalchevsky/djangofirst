@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-27 19:35+0000\n"
+"POT-Creation-Date: 2022-08-02 08:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -259,6 +259,7 @@ msgid "Delete Student"
 msgstr "Видалити Студента"
 
 #: templates/students/students_confirm_delete.html:13
+#, python-format
 msgid "Do you really want to delete student: \"%(object)s\"?"
 msgstr "Ви дійсно хочете видалити студента: \"%(object)s\"?"
 

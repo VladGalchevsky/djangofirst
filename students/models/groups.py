@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 class Group(models.Model):
@@ -6,22 +7,22 @@ class Group(models.Model):
 
     title = models.CharField(
         max_length=256,
-        verbose_name="Назва")
+        verbose_name=_("Title"))
 
     leader = models.OneToOneField(
         'Student',
-        verbose_name="Староста",
+        verbose_name=_("Leader"),
         blank=True,
         null=True,
         on_delete=models.SET_NULL)
 
     notes = models.TextField(
         blank=True,
-        verbose_name="Додаткові нотатки")
+        verbose_name=_("Extra Notes"))
 
-    class Meta:
-        verbose_name = "Група"
-        verbose_name_plural = "Групи"
+    class Meta(object):
+        verbose_name = _("Group")
+        verbose_name_plural = _("Groups")
 
     def __str__(self):
         if self.leader:
