@@ -3,11 +3,13 @@ from datetime import datetime
 from crispy_forms.bootstrap import FormActions
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
+from django.contrib.auth.decorators import login_required
 from django.forms import ModelForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.utils.translation import gettext as _
+from django.utils.decorators import method_decorator
 from django.views.generic import DeleteView, UpdateView
 
 from ..models import Group, Student
@@ -35,7 +37,7 @@ def students_list(request):
 
     return render(request, 'students/students_list.html', context)
 
-
+@login_required
 def students_add(request):
     # was form posted?
     if request.method == "POST":
@@ -154,6 +156,10 @@ class StudentUpdateView(UpdateView):
     template_name = 'students/students_edit.html'
     form_class = StudentUpdateForm
 
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
     def get_success_url(self):
         return '%s?status_message=%s' % (reverse('home'),
                                          _("Student updated successfully!"))
@@ -170,6 +176,10 @@ class StudentUpdateView(UpdateView):
 class StudentDeleteView(DeleteView):
     model = Student
     template_name = 'students/students_confirm_delete.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
     def get_success_url(self):
         return '%s?status_message=%s' % (reverse('home'),

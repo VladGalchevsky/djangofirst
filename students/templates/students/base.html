@@ -1,5 +1,6 @@
 {% load i18n %}
 {% load static %}
+{% load socialaccount %}
 
 <!DOCTYPE html>
 <html lang="uk">
@@ -28,18 +29,32 @@
 
     <!-- Start Header -->
     <div class="row mt-3" id="header">
-      <div class="col-sm-8">
+      <div class="col-sm-6">
         <h1>{% trans "Students Accounting Service" %}</h1>
       </div>
-      <div class="col-sm-4 d-flex" id="group-selector">
-        <label for="group" class="mr-1"><strong>{% trans "Group" %}:</strong></label>
-        <select name="group" class="custom-select" id="group">
-          <option value="">{% trans "All Students" %}</option>
-          {% for group in GROUPS %}
-            <option value="{{ group.id }}"{% if group.selected %}selected="1"{% endif %}>{{ group.title }}{% if group.leader %}, {{ group.leader }}{% endif %}</option>
-          {% endfor %}
-        </select>
-      </div>
+      {% if user.is_authenticated %}
+        <div class="col-sm-4 d-flex" id="group-selector">
+          <label for="group" class="mr-1"><strong>{% trans "Group" %}:</strong></label>
+          <select name="group" class="custom-select" id="group">
+            <option value="">{% trans "All Students" %}</option>
+            {% for group in GROUPS %}
+              <option value="{{ group.id }}"{% if group.selected %}selected="1"{% endif %}>{{ group.title }}{% if group.leader %}, {{ group.leader }}{% endif %}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <!-- User's toolbar for authenticated users -->
+        <div class="col-sm-2 text-right my-auto" id="user-toolbar">
+          <a href="{% url "profile" %}">{{ user.get_full_name|default:user.username }}</a> |
+          <a href="{% url 'account_logout' %}">{% trans "Logout" %}</a>
+        </div>
+      {% else %}
+        <!-- User's toolbar for anonymous users -->
+        <div class="col-sm-6 text-right my-auto" id="user-toolbar">
+          <a href="{% provider_login_url "facebook" method="oauth2" next=request.path %}">{% translate 'Login' %}</a> |
+          <a href="{% url 'account_login' %}">{% trans "Login" %}</a> |
+          <a href="{% url 'account_signup' %}">{% trans "Register" %}</a>
+        </div>
+      {% endif %}
     </div>
     <!-- End Header -->
 
@@ -50,15 +65,19 @@
           <li class="nav-item">
             <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">{% trans "Students" %}</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link {% if '/journal' in request.path %}active{% endif %}" href="/journal">{% trans "Journal" %}</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {% if '/groups' in request.path %}active{% endif %}" href="{% url 'groups' %}">{% trans "Groups" %}</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {% if '/contact-admin' in request.path %}active{% endif %}" href="{% url 'contact_admin' %}">{% trans "Contact" %}</a>
-          </li>
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link {% if '/journal' in request.path %}active{% endif %}" href="/journal">{% trans "Journal" %}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if '/groups' in request.path %}active{% endif %}" href="{% url 'groups' %}">{% trans "Groups" %}</a>
+            </li>
+          {% endif %}
+          {% if perms.auth.add_user %}  
+            <li class="nav-item">
+              <a class="nav-link {% if '/contact-admin' in request.path %}active{% endif %}" href="{% url 'contact_admin' %}">{% trans "Contact" %}</a>
+            </li>
+          {% endif %}  
         </ul>
       </div>
     </div>

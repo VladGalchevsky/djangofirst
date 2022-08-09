@@ -4,6 +4,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from django import forms
 from django.conf import settings
+from django.contrib.auth.decorators import permission_required
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -45,6 +46,7 @@ class ContactForm(forms.Form):
         self.helper.add_input(Submit('send_button', _('Send')))
 
 
+@permission_required('auth.add_user', raise_exception=True)
 def contact_admin(request):
     # check if form was posted
     if request.method == 'POST':

@@ -16,12 +16,24 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, re_path
+from django.contrib.auth.decorators import login_required
+from django.urls import path, re_path, include
+from django.views.generic import TemplateView
 from django.views.i18n import JavaScriptCatalog
 
 from students.views import groups, students, journal, contact_admin
 
 urlpatterns = [
+     # User related urls
+     path('accounts/profile/', login_required(TemplateView.as_view(
+          template_name='account/profile.html')), name='profile'),
+     path('accounts/', include('allauth.urls')),
+
+    # User related urls
+    path('accounts/profile/', login_required(TemplateView.as_view(
+        template_name='account/profile.html')), name='profile'),
+    path('accounts/', include('allauth.urls')),
+
     # Students urls
     path('', students.students_list, name='home'),
     path('students/add/', students.students_add,
@@ -34,14 +46,14 @@ urlpatterns = [
          name='students_delete'),
 
     # Groups urls
-    path('groups/', groups.groups_list, name='groups'),
-    path('groups/add/', groups.GroupAddView.as_view(),
+    path('groups/', login_required(groups.groups_list), name='groups'),
+    path('groups/add/', login_required(groups.GroupAddView.as_view()),
          name='groups_add'),
     path('groups/<int:pk>/edit/',
-         groups.GroupUpdateView.as_view(),
+         login_required(groups.GroupUpdateView.as_view()),
          name='groups_edit'),
     path('groups/<int:pk>/delete/',
-         groups.GroupDeleteView.as_view(),
+         login_required(groups.GroupDeleteView.as_view()),
          name='groups_delete'),
 
     # Journal urls
