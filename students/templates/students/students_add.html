@@ -1,6 +1,7 @@
 {% extends "students/base.html" %}
 {% load i18n %}
 {% load static %}
+{% load str2int %}
 
 {% block meta_title %}{% trans "Add Student" %}{% endblock meta_title %}
 
@@ -81,7 +82,7 @@
                 class="custom-select {% if errors.student_group %}is-invalid{% endif %}">
           <option value="">{% trans "Select group" %}</option>
           {% for group in groups %}
-            <option value="{{ group.id }}" {% if group.id == request.POST.student_group|add:0 %}selected="selected"{% endif %}>{{ group.title }}</option>
+            <option value="{{ group.id }}" {% if group.id == request.POST.student_group|str2int %}selected="selected"{% endif %}>{{ group.title }}</option>
           {% endfor %}
         </select>
         <div class="invalid-feedback">{{ errors.student_group }}</div>

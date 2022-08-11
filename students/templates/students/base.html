@@ -50,7 +50,7 @@
       {% else %}
         <!-- User's toolbar for anonymous users -->
         <div class="col-sm-6 text-right my-auto" id="user-toolbar">
-          <a href="{% provider_login_url "facebook" method="oauth2" next=request.path %}">{% translate 'Login' %}</a> |
+          <a href="{% provider_login_url "facebook" method="oauth2" next=request.path %}">{% trans "via Facebook" %}</a> |
           <a href="{% url 'account_login' %}">{% trans "Login" %}</a> |
           <a href="{% url 'account_signup' %}">{% trans "Register" %}</a>
         </div>
@@ -73,11 +73,11 @@
               <a class="nav-link {% if '/groups' in request.path %}active{% endif %}" href="{% url 'groups' %}">{% trans "Groups" %}</a>
             </li>
           {% endif %}
-          {% if perms.auth.add_user %}  
+          {% if perms.auth.add_user %}
             <li class="nav-item">
               <a class="nav-link {% if '/contact-admin' in request.path %}active{% endif %}" href="{% url 'contact_admin' %}">{% trans "Contact" %}</a>
             </li>
-          {% endif %}  
+          {% endif %}
         </ul>
       </div>
     </div>
@@ -147,7 +147,6 @@
   <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
   <script src="{% static 'js/js.cookie-2.2.1.min.js' %}"></script>
   <script src="{% static 'js/main.js' %}"></script>
-  <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
   {% block extra_js %}{% endblock extra_js %}
 </body>
 </html>
