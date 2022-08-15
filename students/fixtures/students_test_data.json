@@ -1,0 +1,102 @@
+[
+  {
+    "fields": {
+      "first_name": "Vitaliy",
+      "last_name": "Podoba",
+      "middle_name": "Ivanovych",
+      "photo": "./podoba.jpg",
+      "notes": "",
+      "student_group": 1,
+      "birthday": "1984-06-17",
+      "ticket": "000"
+    },
+    "model": "students.student",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "first_name": "Dmytro",
+      "last_name": "Litvinov",
+      "middle_name": "Olexadrovych",
+      "photo": "./litvinov.jpg",
+      "notes": "Notes 2",
+      "student_group": 1,
+      "birthday": "1994-10-04",
+      "ticket": "111"
+    },
+    "model": "students.student",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "first_name": "Student3",
+      "last_name": "Last Name 3",
+      "middle_name": "Middle Name 3",
+      "photo": "",
+      "notes": "Notes 3",
+      "student_group": 1,
+      "birthday": "1984-02-19",
+      "ticket": "333"
+    },
+    "model": "students.student",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "first_name": "Student4",
+      "last_name": "Last Name 4",
+      "middle_name": "Middle Name 4",
+      "photo": "",
+      "notes": "Notes 4",
+      "student_group": 1,
+      "birthday": "1984-10-19",
+      "ticket": "444"
+    },
+    "model": "students.student",
+    "pk": 4
+  },
+  {
+    "fields": {
+      "notes": "",
+      "leader": 1,
+      "title": "Group1"
+    },
+    "model": "students.group",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "notes": "",
+      "leader": null,
+      "title": "Group2"
+    },
+    "model": "students.group",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "is_active": true,
+      "is_superuser": true,
+      "is_staff": true,
+      "last_login": "2014-11-19T00:17:12.803Z",
+      "groups": [],
+      "user_permissions": [],
+      "password": "pbkdf2_sha256$12000$vwDz0jnc05bN$cZSSKKOkBa0RNAvEyRqNY1OrIfFpH6mpOxdLyc2aB0g=",
+      "email": "admin@admin.com",
+      "date_joined": "2014-11-01T12:59:32.011Z"
+    },
+    "model": "auth.user",
+    "pk": 1
+  },
+  {
+    "model": "sites.site",
+    "pk": 1,
+    "fields": {
+      "domain": "localhost:8000",
+      "name": "Students Database"
+    }
+  }
+]

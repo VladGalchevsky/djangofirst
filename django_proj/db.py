@@ -5,9 +5,14 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'studentsdb',
-        'USER': 'studentsdb',
+        # 'USER': 'studentsdb',
+        # 'PASSWORD': 'studentsdb',
+        'USER': 'postgres',
         'PASSWORD': '12345qwert',
         'HOST': 'localhost',
         'PORT': '',
+        'TEST': {
+            'CHARSET': 'utf8',
+        }
     }
 }

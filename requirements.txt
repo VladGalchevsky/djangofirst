@@ -2,3 +2,4 @@ python-dateutil
 Pillow
 psycopg2-binary
 django-allauth
+coverage
